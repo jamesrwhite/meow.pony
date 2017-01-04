@@ -1,0 +1,5 @@
+build:
+	ponyc
+
+run:
+	./meow
