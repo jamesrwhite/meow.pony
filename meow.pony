@@ -7,38 +7,38 @@ actor Main
 
   be meow(input': Array[U8] val) =>
     // Get the user input as a string
-    let input: String = String.from_array(input')
+    let input: String trn = recover String end
+    input.append(String.from_array(input'))
+    input.rstrip()
 
     // Build the borders that go at the top/bottom of the speech bubble
-    var top_counter: U64 = 0
-    var bottom_counter: U64 = 0
+    var counter: U64 = 0
     var top_border = ""
     var bottom_border = ""
-    let length = input.size().u64()
+    var leading_whitespace = ""
+    let length = input.size().u64() + 1
 
-    while top_counter < length do
+    while counter < length do
       top_border = top_border.add("_")
-      top_counter = top_counter + 1
-    end
-
-    while bottom_counter < length do
       bottom_border = bottom_border.add("-")
-      bottom_counter = bottom_counter + 1
+      leading_whitespace = leading_whitespace.add(" ")
+
+      counter = counter + 1
     end
 
     env.out.print(" " + top_border)
-    env.out.write("< " + input + " >\n")
-    env.out.print(" " + bottom_border)
+    env.out.write("< " + consume input + " >\n")
+    env.out.write(" " + bottom_border)
 
-    let cat = """
-                              _..
-        \    /}_{\           /.-'
-         \  ( • • )-.___...-'/
-            ==._.==         ;
-                 \   _..._ /,
-                 {_;/   {_//""""
+    var cat = ""
+    cat = cat.add("""                      _..""" + "\n")
+    cat = cat.add(leading_whitespace + """\    /}_{\           /.-'""" + "\n")
+    cat = cat.add(leading_whitespace + """ \  ( • • )-.___...-'/""" + "\n")
+    cat = cat.add(leading_whitespace + """    ==._.==         ;""" + "\n")
+    cat = cat.add(leading_whitespace + """         \   _..._ /,""" + "\n")
+    cat = cat.add(leading_whitespace + """         {_;/   {_//"""" + "\n")
 
-      env.out.print(cat)
+    env.out.print(cat)
 
   fun tag notify(): StdinNotify iso^ =>
     object iso is StdinNotify
