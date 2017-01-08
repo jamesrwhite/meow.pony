@@ -2,4 +2,4 @@ build:
 	ponyc
 
 run:
-	./meow
+	echo "meowwwww" | ./meow
