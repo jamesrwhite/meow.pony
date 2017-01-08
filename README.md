@@ -19,10 +19,10 @@ I'm aiming for the above ^^ and so far I have this:
 
 ```
  $ echo "meowwwww" | ./meow
----------
-meowwwww
-
----------
+ _________
+< meowwwww
+ >
+ ---------
                       _..
 \    /}_{\           /.-'
  \  ( • • )-.___...-'/

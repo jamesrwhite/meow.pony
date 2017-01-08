@@ -10,18 +10,25 @@ actor Main
     let input: String = String.from_array(input')
 
     // Build the borders that go at the top/bottom of the speech bubble
-    var counter: U64 = 0
-    var border = ""
+    var top_counter: U64 = 0
+    var bottom_counter: U64 = 0
+    var top_border = ""
+    var bottom_border = ""
     let length = input.size().u64()
 
-    while counter < length do
-      border = border.add("-")
-      counter = counter + 1
+    while top_counter < length do
+      top_border = top_border.add("_")
+      top_counter = top_counter + 1
     end
 
-    env.out.print(border)
-    env.out.print(input)
-    env.out.print(border)
+    while bottom_counter < length do
+      bottom_border = bottom_border.add("-")
+      bottom_counter = bottom_counter + 1
+    end
+
+    env.out.print(" " + top_border)
+    env.out.write("< " + input + " >\n")
+    env.out.print(" " + bottom_border)
 
     let cat = """
                               _..
